@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404
 
-from webawards.models import Project
+from .models import Project
 
 # Create your views here.
 def home(request):
@@ -18,3 +18,13 @@ def project_details(request, project_id):
 
 def profile(request):
   return render(request, 'profile.html')
+
+def search_projects(request):
+  if 'search' in request.GET and request.GET['search']:
+    title_search = request.GET.get('search')
+    searched_projects = Project.search_by_title(title_search)
+    message = f"{title_search}"
+    return render(request, 'search-results.html', {"message":message, "projects":searched_projects})
+  else:
+    message = "You have not yer made a search"
+    return render(request, 'search-results.html', {"message":message})

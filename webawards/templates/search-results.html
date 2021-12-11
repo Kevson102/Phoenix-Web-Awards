@@ -1,0 +1,16 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+<div class="row text-center">
+  {% for project in projects %}
+  <div class="col-xs-6 col-md-3 my-3">
+    <a href="{% url 'project_details' project_id=project.id%}" class="thumbnail">
+      <p><em>{{project.project_title}}</em></p>
+      <img src="{{project.screenshot.url}}" class="img-fluid" alt="Project Display Screenshot">
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
