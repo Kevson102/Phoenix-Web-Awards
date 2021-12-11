@@ -20,6 +20,18 @@
     <h1 class="text-center">Posted projects</h1>
     
     <div class="row text-center">
+      {% for project in projects %}
+      <div class="col-xs-6 col-md-3 my-3">
+        <a href="{% url 'project_details' project_id=project.id%}" class="thumbnail">
+          <p><em>{{project.project_title}}</em></p>
+          <img src="{{project.screenshot.url}}" class="img-fluid" alt="Project Display Screenshot">
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+
+    <!-- <div class="row text-center">
       <div class="col-xs-6 col-md-3 my-3">
         <a href="#" class="thumbnail">
           <p><em>Project 1</em></p>
@@ -55,7 +67,7 @@
       </div>
 
       
-    </div>
+    </div> -->
   </div>
 </div>
 
