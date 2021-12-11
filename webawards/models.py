@@ -29,5 +29,10 @@ class Project(models.Model):
   def delete_project(self):
     self.delete()
   
+  @classmethod 
+  def get_all_projects(cls):
+    all_projects = cls.objects.all()
+    return all_projects
+  
   def __str__(self):
     return self.project_title

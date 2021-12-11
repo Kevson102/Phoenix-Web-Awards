@@ -54,3 +54,14 @@ class ProjectTestCase(TestCase):
     self.project.delete_project()
     saved_projects = Project.objects.all()
     self.assertTrue(len(saved_projects)==0)
+    
+  # Test get all projects
+  def test_get_all_projects(self):
+    user, created = User.objects.get_or_create(username = 'kevson102', email='kevson226@gmail.com', password ='password2')
+
+    self.project.save_project()
+    self.project2 = Project(project_title='migrators', screenshot='migrators.image.png', project_description='This is my migration website', live_link='https://kevson102.com/portfolio', user = user)
+    self.project2.save_project()
+    saved_projects = Project.get_all_projects()
+    self.assertTrue(len(saved_projects)==2)
+    
