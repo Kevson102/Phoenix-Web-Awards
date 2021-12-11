@@ -23,5 +23,8 @@ class Project(models.Model):
   live_link = models.URLField()
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   
+  def save_project(self):
+    self.save()
+  
   def __str__(self):
     return self.project_title
