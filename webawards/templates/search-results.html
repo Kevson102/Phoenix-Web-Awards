@@ -2,6 +2,12 @@
 
 {% block content %}
 
+{% if projects %}
+  <h2 class="text-center">Found {{projects|length}} result(s) of the searched title <b>{{message}}</b></h2>
+{% else %}
+  <h2 class="text-center">Found 0 results associated with the title <b>{{message}}</b></h2>
+{% endif %}
+
 <div class="row text-center">
   {% for project in projects %}
   <div class="col-xs-6 col-md-3 my-3">
