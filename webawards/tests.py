@@ -38,6 +38,10 @@ class ProjectTestCase(TestCase):
     self.project = Project(project_title='portfolio', screenshot='portfolio.image.png', project_description='This is my professional portfolio', live_link='https://kevson.com/portfolio', user = user)
     self.project.save()
     
+  def tearDown(self):
+    Profile.objects.all().delete()
+    Project.objects.all().delete()
+    
   # Test instance
   def test_instance(self):
     self.assertTrue(isinstance(self.project, Project))
@@ -57,6 +61,7 @@ class ProjectTestCase(TestCase):
     
   # Test get all projects
   def test_get_all_projects(self):
+    # Create a user instance for the test.
     user, created = User.objects.get_or_create(username = 'kevson102', email='kevson226@gmail.com', password ='password2')
 
     self.project.save_project()
@@ -65,3 +70,17 @@ class ProjectTestCase(TestCase):
     saved_projects = Project.get_all_projects()
     self.assertTrue(len(saved_projects)==2)
     
+  # Test search project by title
+  def test_search_project_by_title(self):
+    user, created = User.objects.get_or_create(username = 'kevson102', email='kevson226@gmail.com', password ='password2')
+    
+    # Create a profile instance and save it
+    self.profile = Profile(profile_photo='profile.picture', user_bio ='This is my biography info', user= user)
+    self.profile.save_profile()
+    
+    # Create a test project
+    self.project2 = Project(project_title='migrators', screenshot='migrators.image.png', project_description='This is my migration website', live_link='https://kevson102.com/portfolio', user = user)
+    self.project2.save_project()
+    
+    projects_by_title = Project.search_by_title(self.project2.project_title)
+    self.assertTrue(len(projects_by_title)>0)
