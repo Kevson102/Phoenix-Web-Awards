@@ -2,6 +2,14 @@
 
 {% block content %}
 
-<h2>Project details page works</h2>
+<div class="container-fluid">
+  <div class="text-center">
+    <h2><em>{{details.project_title}}</em></h2>
+  </div>
+
+  <div class="text-center">
+    <img src="{{details.screenshot.url}}" class="image-fluid detailimage" alt="project display">
+  </div>
+</div>
 
 {% endblock%}

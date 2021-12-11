@@ -11,3 +11,6 @@ h1, h3{
 .projects>h1{
   color: black;
 }
+.detailimage{
+  max-width: 750px;
+}

@@ -14,7 +14,7 @@ def project_details(request, project_id):
   except DoesNotExist:
     raise Http404
   
-  return render(request, 'ProjectDetails.html', {"project_details":project_details})
+  return render(request, 'ProjectDetails.html', {"details":project_details})
 
 def profile(request):
   return render(request, 'profile.html')
