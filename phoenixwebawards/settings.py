@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'kevsonphoenix',
+    'API_KEY': '787695987896983',
+    'API_SECRET': 'Bha_MTQFhZeG0qT5SB6QKmrSdp0'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
