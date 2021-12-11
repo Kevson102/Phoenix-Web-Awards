@@ -3,12 +3,22 @@
 {% block content %}
 
 <div class="container-fluid">
-  <div class="text-center">
-    <h2><em>{{details.project_title}}</em></h2>
-  </div>
+  <h2 class="text-center"><em>{{details.project_title}}</em></h2>
 
-  <div class="text-center">
-    <img src="{{details.screenshot.url}}" class="image-fluid detailimage" alt="project display">
+  <div class="row">
+    
+    <div class="col-md-6 col-lg-6">
+      <div class="text-center">
+        <img src="{{details.screenshot.url}}" class="img-fluid detailimage" alt="project display">
+      </div>
+    </div>
+
+    <div class="col-md-5 col-lg-5 mt-5">
+      <p class="text-center">{{details.project_description}}</p>
+      <p><strong><small>Posted on: <em>{{details.date_posted}}</em></small></strong></p>
+      <p><small><em>Posted By: <strong>{{details.user}}</strong></em></small></p>
+      <a href="{{details.live_link}}"><strong>Live Link</strong></a>
+    </div>
   </div>
 </div>
 
