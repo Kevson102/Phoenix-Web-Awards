@@ -5,8 +5,10 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
   profile_photo = models.ImageField(upload_to='static/images/')
   user_bio = models.TextField()
-  email = models.EmailField()
   user = models.OneToOneField(User, on_delete=models.CASCADE)
+  
+  def save_profile(self):
+    self.save()
   
   def __str__(self):
     return self.user_bio
