@@ -84,3 +84,4 @@ class ProjectTestCase(TestCase):
     
     projects_by_title = Project.search_by_title(self.project2.project_title)
     self.assertTrue(len(projects_by_title)>0)
+    
