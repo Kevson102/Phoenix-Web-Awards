@@ -21,6 +21,7 @@ class Project(models.Model):
   screenshot = models.ImageField(upload_to='static/images/')
   project_description = models.TextField()
   live_link = models.URLField()
+  date_posted=models.DateTimeField(auto_now=True)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   
   def save_project(self):
