@@ -14,8 +14,9 @@
       </div>
     </div>
 
-    <div class="col-md-5 col-lg-5 mt-5">
-      <h2 class="text-center">Description</h2>
+    <div class="col-md-5 col-lg-5">
+      <hr>
+      <h2 class="text-center" style="color: brown; text-decoration:underline;">Description</h2>
       <p class="text-center">{{details.project_description}}</p>
       <p><strong><small>Posted on: <em>{{details.date_posted}}</em></small></strong></p>
       <p><small><em>Posted By: <strong>{{details.user}}</strong></em></small></p>
@@ -24,7 +25,7 @@
 
       <form action="{%url 'submit_rating' details.id %}" method="post">
         {% csrf_token %}
-        <h2 class="text-center">Rate the project</h2>
+        <h2 class="text-center" style="color: brown; text-decoration:underline;">Rate the project</h2>
 
         {% bootstrap_form form %}
 
@@ -33,78 +34,11 @@
         </div>
       </form>
 
-
-      <!-- <form action="{%url 'submit_rating' details.id %}" method="POST">
-        {% csrf_token %}
-        <div>
-          <h2 class="text-center">Rate the project</h2>
-           Rating stars
-          
-          <div class="rate">
-            <span> Rate the Project Design: </span><br>
-            <input type="radio" name="design_score" id="Design10" value="10" required><label for="Design10" title="10"></label>
-            <input type="radio" name="design_score" id="Design9" value="9" required><label for="Design9" title="9"></label>
-            <input type="radio" name="design_score" id="Design8" value="8" required><label for="Design8" title="8"></label>
-            <input type="radio" name="design_score" id="Design7" value="7" required><label for="Design7" title="7"></label>
-            <input type="radio" name="design_score" id="Design6" value="6" required><label for="Design6" title="6"></label>
-            <input type="radio" name="design_score" id="Design5" value="5" required><label for="Design5" title="5"></label>
-            <input type="radio" name="design_score" id="Design4" value="4" required><label for="Design4" title="4"></label>
-            <input type="radio" name="design_score" id="Design3" value="3" required><label for="Design3" title="3"></label>
-            <input type="radio" name="design_score" id="Design2" value="2" required><label for="Design2" title="2"></label>
-            <input type="radio" name="design_score" id="Design1" value="1" required><label for="Design1" title="1"></label>
-
-          </div>
-          <br>
-          <input type="submit" value="Post design rating" class="btn btn-primary btn-sm">
-        </div>
-      </form>
-
-      <form action="{%url 'submit_rating' details.id %}" method="POST">
-        {% csrf_token %}
-        <div>
-          <div class="rate">
-            <span> Rate the Project Usability: </span><br>
-            <input type="radio" name="rating" id="Usability10" value="10" required><label for="Usability10" title="10"></label>
-            <input type="radio" name="rating" id="Usability9" value="9" required><label for="Usability9" title="9"></label>
-            <input type="radio" name="rating" id="Usability8" value="8" required><label for="Usability8" title="8"></label>
-            <input type="radio" name="rating" id="Usability7" value="7" required><label for="Usability7" title="7"></label>
-            <input type="radio" name="rating" id="Usability6" value="6" required><label for="Usability6" title="6"></label>
-            <input type="radio" name="rating" id="Usability5" value="5" required><label for="Usability5" title="5"></label>
-            <input type="radio" name="rating" id="Usability4" value="4" required><label for="Usability4" title="4"></label>
-            <input type="radio" name="rating" id="Usability3" value="3" required><label for="Usability3" title="3"></label>
-            <input type="radio" name="rating" id="Usability2" value="2" required><label for="Usability2" title="2"></label>
-            <input type="radio" name="rating" id="Usability1" value="1" required><label for="Usability1" title="1"></label>
-          </div>
-          <br>
-          <input type="submit" value="Post usability rating" class="btn btn-primary btn-sm">
-        </div>
-      </form>
-
-      <form action="{%url 'submit_rating' details.id %}" method="POST">
-        {% csrf_token %}
-        <div>
-          <div class="rate">
-            <span> Rate the Project Content: </span><br>
-            <input type="radio" name="rating" id="Content10" value="10" required><label for="Content10" title="10"></label>
-            <input type="radio" name="rating" id="Content9" value="9" required><label for="Content9" title="9"></label>
-            <input type="radio" name="rating" id="Content8" value="8" required><label for="Content8" title="8"></label>
-            <input type="radio" name="rating" id="Content7" value="7" required><label for="Content7" title="7"></label>
-            <input type="radio" name="rating" id="Content6" value="6" required><label for="Content6" title="6"></label>
-            <input type="radio" name="rating" id="Content5" value="5" required><label for="Content5" title="5"></label>
-            <input type="radio" name="rating" id="Content4" value="4" required><label for="Content4" title="4"></label>
-            <input type="radio" name="rating" id="Content3" value="3" required><label for="Content3" title="3"></label>
-            <input type="radio" name="rating" id="Content2" value="2" required><label for="Content2" title="2"></label>
-            <input type="radio" name="rating" id="Content1" value="1" required><label for="Content1" title="1"></label>
-          </div>
-          <br>
-          <input type="submit" value="Post content rating" class="btn btn-primary btn-sm">
-        </div>
-      </form> -->
-
     </div>
   </div>
 
   <div class="mt-4">
+    <h2 class="text-center" style="color: brown; text-decoration:underline;">Ratings</h2>
     <table class="table text-center">
       <thead>
         <tr>

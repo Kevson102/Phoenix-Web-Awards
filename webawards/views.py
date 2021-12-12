@@ -3,7 +3,7 @@ from django.http import Http404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import Project, Votes
+from .models import Project, Votes, Profile
 from.forms import RatingForm, ProjectForm
 
 # Create your views here.
@@ -24,7 +24,9 @@ def project_details(request, project_id):
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
-  return render(request, 'profile.html')
+  current_user=request.user.id
+  profile = Profile.objects.filter(user__id = current_user)
+  return render(request, 'profile.html', {"profile":profile})
 
 def search_projects(request):
   if 'search' in request.GET and request.GET['search']:

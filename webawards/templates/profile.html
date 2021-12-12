@@ -2,6 +2,31 @@
 
 {% block content %}
 
-<h2>Profile page works</h2>
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-md-5"></div>
+      {% if profile.profile_photo %}
+        <div class="col-md-2">
+          <img src="{{profile.profile_photo.url}}" class="img-fluid rounded-circle" alt="Profile picture">
+        </div>
+      {%else%}
+        <div class="col-md-2">
+          <img src="/static/backgrounds/profile.png" class="img-fluid rounded-circle" alt="Profile picture">
+        </div>
+      {% endif%}
+      <div class="col-md-5"></div>
+    </div>
+    {% if profile.user_bio %}
+      <div class="text-center">
+        {{profile.user_bio}}
+      </div>
+    {%else%}
+      <div class="text-center">
+        <p>No user Bio yet</p>
+      </div>
+    {%endif%}
+    
+  </div>
 
 {% endblock%}
