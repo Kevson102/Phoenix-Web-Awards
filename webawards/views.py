@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Project, Votes, Profile
-from .forms import RatingForm, ProjectForm
+from .forms import ProfileForm, RatingForm, ProjectForm
 from .serializer import ProfileSerializer, ProjectSerializer
 
 # Create your views here.
@@ -31,6 +31,34 @@ def profile(request):
   current_user=request.user.id
   profile = Profile.objects.filter(user__id = current_user)
   return render(request, 'profile.html', {"profile":profile})
+
+def create_profile(request):
+  # if request.method=="POST":
+  #   try:
+  #     profile = Profile.objects.get(profile_id=request.profile.id)
+  #     form = ProfileForm(request.POST, request.FILES, instance=profile)
+  #     form.save()
+      
+  #     messages.success(request, 'Your profile has been updated successfully')
+  #     return redirect('profile')
+    
+  #   except Profile.DoesNotExist:
+    form = ProfileForm(request.POST, request.FILES)
+    if form.is_valid():
+      profile_photo = form.save(commit=False)
+      user_bio = form.cleaned_data.get('user_bio')
+      form.instance.user = request.user
+      
+      form.save()
+      
+      messages.success(request, 'Your profile has been created successfully')
+      return redirect('profile')
+    else:
+      form = ProfileForm()
+      
+    return render(request, 'createprofile.html', {"form":form})
+        
+    
 
 def search_projects(request):
   if 'search' in request.GET and request.GET['search']:
