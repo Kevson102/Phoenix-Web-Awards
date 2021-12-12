@@ -5,7 +5,10 @@
   <div class="container">
     
     <div class="row">
-      <div class="col-md-5"></div>
+      <div class="col-md-5">
+        <h4 class="mt-5 btn btn-sm btn-primary">create profile</h4>
+      </div>
+
       {% if profile.profile_photo %}
         <div class="col-md-2">
           <img src="{{profile.profile_photo.url}}" class="img-fluid rounded-circle" alt="Profile picture">
@@ -15,7 +18,8 @@
           <img src="/static/backgrounds/profile.png" class="img-fluid rounded-circle" alt="Profile picture">
         </div>
       {% endif%}
-      <div class="col-md-5"></div>
+
+      <div class="col-md-5 text-center"></div>
     </div>
     {% if profile.user_bio %}
       <div class="text-center">
