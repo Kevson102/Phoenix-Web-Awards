@@ -20,6 +20,33 @@
       <a href="{{details.live_link}}" target="_blank"><strong>Live Link</strong></a>
     </div>
   </div>
+
+  <div class="mt-4">
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th scope="col">Voted By</th>
+          <th scope="col">design score</th>
+          <th scope="col">usability score</th>
+          <th scope="col">content score</th>
+          <th scope="col">Avg Score</th>
+        </tr>
+      </thead>
+      {%for vote in votes%}
+      <tbody>
+        <tr>
+          <td>{{vote.user}}</td>
+          <td>{{vote.design_score}}</td>
+          <td>{{vote.usability_score}}</td>
+          <td>{{vote.content_score}}</td>
+          <td>average</td>
+        </tr>
+      </tbody>
+      {%endfor%}
+    </table>
+    
+  </div>
+
 </div>
 
 {% endblock%}

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404
 
-from .models import Project
+from .models import Project, Votes
 
 # Create your views here.
 def home(request):
@@ -11,10 +11,11 @@ def home(request):
 def project_details(request, project_id):
   try:
     project_details = Project.objects.get(pk = project_id)
+    project_votes = Votes.objects.filter(project__id=project_id).all()
   except DoesNotExist:
     raise Http404
   
-  return render(request, 'ProjectDetails.html', {"details":project_details})
+  return render(request, 'ProjectDetails.html', {"details":project_details, "votes":project_votes})
 
 def profile(request):
   return render(request, 'profile.html')
