@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import Http404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Project, Votes
 from.forms import RatingForm, ProjectForm
@@ -10,16 +11,18 @@ def home(request):
   projects=Project.get_all_projects()
   return render(request, 'index.html', {"projects":projects})
 
+@login_required(login_url='/accounts/login/')
 def project_details(request, project_id):
   form = RatingForm(request.POST)
   try:
     project_details = Project.objects.get(pk = project_id)
     project_votes = Votes.objects.filter(project__id=project_id).all()
-  except DoesNotExist:
+  except Project.DoesNotExist:
     raise Http404
   
   return render(request, 'ProjectDetails.html', {"details":project_details, "votes":project_votes, "form":form})
 
+@login_required(login_url='/accounts/login/')
 def profile(request):
   return render(request, 'profile.html')
 
@@ -33,6 +36,7 @@ def search_projects(request):
     message = "You have not yer made a search"
     return render(request, 'search-results.html', {"message":message})
 
+@login_required(login_url='/accounts/login/')
 def submit_rating(request, project_id):
   url = request.META.get('HTTP_REFERER')
   if request.method == 'POST':
@@ -55,7 +59,8 @@ def submit_rating(request, project_id):
         messages.success(request, 'Your rating has been posted')
         
         return redirect(url)
-      
+
+@login_required(login_url='/accounts/login/')      
 def post_project(request):
   
   if request.method=="POST":
