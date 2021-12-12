@@ -1,5 +1,5 @@
 from django import forms
-from .models import Votes,Project
+from .models import Profile, Votes,Project
 
 class RatingForm(forms.ModelForm):
   class Meta:
@@ -11,4 +11,8 @@ class ProjectForm(forms.ModelForm):
     model = Project
     fields = ['project_title', 'screenshot', 'project_description', 'live_link']
     
+class ProfileForm(forms.ModelForm):
+  class Meta:
+    model = Profile
+    fields = ['profile_photo', 'user_bio']
     
