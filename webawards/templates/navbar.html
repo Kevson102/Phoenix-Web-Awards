@@ -16,6 +16,33 @@
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
+
+    <div class="mx-4">
+      {% if user.is_authenticated %}
+        <ul style="list-style-type: none;">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
+
+            <ul class="dropdown-menu" role="menu">
+              <li class="btn btn-default">
+                <a href="">Profile</a>
+              </li>
+              <li class="btn btn-default">
+                <a href="/accounts/password/change">Change Password</a>
+              </li>
+              <li class="btn btn-default">
+                <a href="/logout">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      {% else %}
+        <li class="btn btn-default">
+          <a href="/accounts/login">Login</a>
+        </li>
+      {%endif%}
+    </div>
+
     <form class="form-inline my-2 my-lg-0" action="{% url 'search_projects'%}">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
