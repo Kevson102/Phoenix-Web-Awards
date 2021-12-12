@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import Http404
+from django.contrib import messages
 
 from .models import Project, Votes
+from.forms import RatingForm, ProjectForm
 
 # Create your views here.
 def home(request):
@@ -9,13 +11,14 @@ def home(request):
   return render(request, 'index.html', {"projects":projects})
 
 def project_details(request, project_id):
+  form = RatingForm(request.POST)
   try:
     project_details = Project.objects.get(pk = project_id)
     project_votes = Votes.objects.filter(project__id=project_id).all()
   except DoesNotExist:
     raise Http404
   
-  return render(request, 'ProjectDetails.html', {"details":project_details, "votes":project_votes})
+  return render(request, 'ProjectDetails.html', {"details":project_details, "votes":project_votes, "form":form})
 
 def profile(request):
   return render(request, 'profile.html')
@@ -29,3 +32,44 @@ def search_projects(request):
   else:
     message = "You have not yer made a search"
     return render(request, 'search-results.html', {"message":message})
+
+def submit_rating(request, project_id):
+  url = request.META.get('HTTP_REFERER')
+  if request.method == 'POST':
+    try:
+      rating = Votes.objects.get(user__id=request.user.id, project__id=project_id)
+      form = RatingForm(request.POST, instance=rating)
+      form.save()
+      messages.success(request, 'Your rating has been updated')
+      return redirect(url)
+    except Votes.DoesNotExist:
+      form = RatingForm(request.POST)
+      if form.is_valid():
+        # rating_data = Votes()
+        design_score = form.cleaned_data.get('design_score')
+        usability_score = form.cleaned_data.get('usability_score')
+        content_score = form.cleaned_data.get('content_score')
+        form.instance.project_id=project_id
+        form.instance.user_id = request.user.id
+        form.save()
+        messages.success(request, 'Your rating has been posted')
+        
+        return redirect(url)
+      
+def post_project(request):
+  
+  if request.method=="POST":
+    form= ProjectForm(request.POST, request.FILES)
+    if form.is_valid():
+      project_title = form.cleaned_data.get('project_title')
+      screenshot = form.save(commit=False)
+      project_description = form.cleaned_data.get('project_description')
+      live_link = form.cleaned_data.get('live_link')
+      form.instance.user = request.user
+      
+      form.save()
+      return redirect('home')
+  else:
+    form = ProjectForm()
+    
+  return render(request, "newproject.html", {"form":form})

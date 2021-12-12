@@ -1,4 +1,5 @@
 {% extends 'common/base.html' %}
+{% load bootstrap4%}
 
 {% block content %}
 
@@ -14,29 +15,43 @@
     </div>
 
     <div class="col-md-5 col-lg-5 mt-5">
+      <h2 class="text-center">Description</h2>
       <p class="text-center">{{details.project_description}}</p>
       <p><strong><small>Posted on: <em>{{details.date_posted}}</em></small></strong></p>
       <p><small><em>Posted By: <strong>{{details.user}}</strong></em></small></p>
       <a href="{{details.live_link}}" target="_blank"><strong>Live Link</strong></a>
+      <hr>
 
-      <form action="" method="POST">
+      <form action="{%url 'submit_rating' details.id %}" method="post">
+        {% csrf_token %}
+        <h2 class="text-center">Rate the project</h2>
+
+        {% bootstrap_form form %}
+
+        <div class="text-center">
+          <input type="submit" class="btn btn-sm btn-success" value="post rating">
+        </div>
+      </form>
+
+
+      <!-- <form action="{%url 'submit_rating' details.id %}" method="POST">
         {% csrf_token %}
         <div>
           <h2 class="text-center">Rate the project</h2>
-          <!-- Rating stars -->
+           Rating stars
           
           <div class="rate">
             <span> Rate the Project Design: </span><br>
-            <input type="radio" name="rating" id="Design10" value="10" required><label for="Design10" title="10"></label>
-            <input type="radio" name="rating" id="Design9" value="9" required><label for="Design9" title="9"></label>
-            <input type="radio" name="rating" id="Design8" value="8" required><label for="Design8" title="8"></label>
-            <input type="radio" name="rating" id="Design7" value="7" required><label for="Design7" title="7"></label>
-            <input type="radio" name="rating" id="Design6" value="6" required><label for="Design6" title="6"></label>
-            <input type="radio" name="rating" id="Design5" value="5" required><label for="Design5" title="5"></label>
-            <input type="radio" name="rating" id="Design4" value="4" required><label for="Design4" title="4"></label>
-            <input type="radio" name="rating" id="Design3" value="3" required><label for="Design3" title="3"></label>
-            <input type="radio" name="rating" id="Design2" value="2" required><label for="Design2" title="2"></label>
-            <input type="radio" name="rating" id="Design1" value="1" required><label for="Design1" title="1"></label>
+            <input type="radio" name="design_score" id="Design10" value="10" required><label for="Design10" title="10"></label>
+            <input type="radio" name="design_score" id="Design9" value="9" required><label for="Design9" title="9"></label>
+            <input type="radio" name="design_score" id="Design8" value="8" required><label for="Design8" title="8"></label>
+            <input type="radio" name="design_score" id="Design7" value="7" required><label for="Design7" title="7"></label>
+            <input type="radio" name="design_score" id="Design6" value="6" required><label for="Design6" title="6"></label>
+            <input type="radio" name="design_score" id="Design5" value="5" required><label for="Design5" title="5"></label>
+            <input type="radio" name="design_score" id="Design4" value="4" required><label for="Design4" title="4"></label>
+            <input type="radio" name="design_score" id="Design3" value="3" required><label for="Design3" title="3"></label>
+            <input type="radio" name="design_score" id="Design2" value="2" required><label for="Design2" title="2"></label>
+            <input type="radio" name="design_score" id="Design1" value="1" required><label for="Design1" title="1"></label>
 
           </div>
           <br>
@@ -44,7 +59,7 @@
         </div>
       </form>
 
-      <form action="" method="POST">
+      <form action="{%url 'submit_rating' details.id %}" method="POST">
         {% csrf_token %}
         <div>
           <div class="rate">
@@ -65,7 +80,7 @@
         </div>
       </form>
 
-      <form action="" method="POST">
+      <form action="{%url 'submit_rating' details.id %}" method="POST">
         {% csrf_token %}
         <div>
           <div class="rate">
@@ -84,46 +99,7 @@
           <br>
           <input type="submit" value="Post content rating" class="btn btn-primary btn-sm">
         </div>
-      </form>
-
-      <!-- <div class="">
-        <h2 class="text-center">Rate the project</h2>
-        Design:
-        <span class="fa fa-star fa-2x checked"></span>
-        <span class="fa fa-star fa-2x checked"></span>
-        <span class="fa fa-star fa-2x checked"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span> <br> <br>
-
-        Usability:
-        <span class="fa fa-star fa-2x checked"></span>
-        <span class="fa fa-star fa-2x checked"></span>
-        <span class="fa fa-star fa-2x checked"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span> <br><br>
-
-        Content:
-        <span class="fa fa-star fa-2x checked"></span>
-        <span class="fa fa-star fa-2x checked"></span>
-        <span class="fa fa-star fa-2x checked"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span>
-        <span class="fa fa-star fa-2x"></span> <br><br>
-      </div> -->
+      </form> -->
 
     </div>
   </div>
@@ -146,7 +122,7 @@
           <td>{{vote.design_score}}</td>
           <td>{{vote.usability_score}}</td>
           <td>{{vote.content_score}}</td>
-          <td>average</td>
+          <td></td>
         </tr>
       </tbody>
       {%endfor%}
