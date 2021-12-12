@@ -24,7 +24,7 @@
       <div class="col-xs-6 col-md-3 my-3">
         <a href="{% url 'project_details' project_id=project.id%}" class="thumbnail">
           <p><em>{{project.project_title}}</em></p>
-          <img src="{{project.screenshot.url}}" class="img-fluid" alt="Project Display Screenshot">
+          <img src="{{project.screenshot.url}}" class="img-fluid" style="max-height: 200px" alt="Project Display Screenshot">
         </a>
       </div>
       {% endfor %}
