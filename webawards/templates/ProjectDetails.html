@@ -47,7 +47,7 @@
           <th scope="col">design score</th>
           <th scope="col">usability score</th>
           <th scope="col">content score</th>
-          <th scope="col">Avg Score</th>
+          <th scope="col" style="color: brown;">Avg Score</th>
         </tr>
       </thead>
       {%for vote in votes%}
@@ -57,7 +57,7 @@
           <td>{{vote.design_score}}</td>
           <td>{{vote.usability_score}}</td>
           <td>{{vote.content_score}}</td>
-          <td><small>{{ vote.design_score|add:vote.usability_score|add:vote.content_score|div:3|floatformat:2 }}</small></td>
+          <td><small><b><em style="color: brown;">{{ vote.design_score|add:vote.usability_score|add:vote.content_score|div:3|floatformat:2 }}</em></b></small></td>
         </tr>
       </tbody>
       {%endfor%}
