@@ -8,6 +8,9 @@ h1, h3{
 .content{
   margin-top: 0px;
 }
+.projects{
+  background-color: rgb(255, 254, 254);
+}
 .projects>h1{
   color: black;
 }
@@ -42,4 +45,11 @@ input:checked ~ label,label:hover ~ label{
 input:checked + label:hover, input:checked ~ label:hover,input:checked ~ label:hover ~ label,
 label:hover ~ input:checked ~ label{
   color: red;
+}
+
+.footer{
+  background-color: rgb(123, 119, 119);
+}
+.copyright{
+  color: white;
 }

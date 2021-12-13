@@ -50,7 +50,8 @@ Open Terminal:
   $ pip install -r requirements.txt
   
 # Running the Application
-- on the code editor, change the configuration settings from prod to dev
+* Create the .env file and register all environment variables
+  * Note: if your are running the project locally, set the MODE as "dev", and if you are running it in production, set MODE to "prod".
 * To run the application, open the cloned repo in terminal and run the following commands:
 
   $ python3.9 manage.py runserver
