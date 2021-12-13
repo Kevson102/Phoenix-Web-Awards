@@ -48,8 +48,8 @@ label:hover ~ input:checked ~ label{
 }
 
 .footer{
-  background-color: rgb(123, 119, 119);
+  background-color: rgb(218, 207, 207);
 }
 .copyright{
-  color: white;
+  color: rgb(34, 21, 21);
 }
