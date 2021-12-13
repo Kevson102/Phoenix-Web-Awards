@@ -6,6 +6,15 @@ class RatingForm(forms.ModelForm):
     model = Votes
     fields = ['design_score', 'usability_score', 'content_score']
     
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        
+        # your calculate
+        instance.Avg_score = instance.design_score + instance.usability_score
+        if commit:
+            instance.save()
+        return instance
+    
 class ProjectForm(forms.ModelForm):
   class Meta:
     model = Project

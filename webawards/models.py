@@ -63,6 +63,14 @@ class Votes(models.Model):
                                        MinValueValidator(1)
                                      ]
                                      )
+  Avg_score = models.DecimalField(default=1,
+                                  decimal_places=2,
+                                  max_digits=3,
+                                  validators=[
+                                    MaxValueValidator(10),
+                                    MinValueValidator(1)
+                                  ]
+                                  )
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   project = models.ForeignKey(Project, on_delete=models.CASCADE)
   

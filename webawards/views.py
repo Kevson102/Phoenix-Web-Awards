@@ -87,6 +87,7 @@ def submit_rating(request, project_id):
         design_score = form.cleaned_data.get('design_score')
         usability_score = form.cleaned_data.get('usability_score')
         content_score = form.cleaned_data.get('content_score')
+        # form.instance.Avg_score = design_score
         form.instance.project_id=project_id
         form.instance.user_id = request.user.id
         form.save()
