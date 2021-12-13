@@ -23,15 +23,27 @@
         <div class="col-md-5 text-center"></div>
       </div>
 
-      {% if profile.user_bio %}
-        <div class="text-center">
-          {{profile.user_bio}}
-        </div>
-      {%else%}
-        <div class="text-center">
-          <p>No user Bio yet</p>
-        </div>
-      {%endif%}
+        {% if profile.user_bio %}
+          <div class="text-center">
+            {{profile.user_bio}}
+          </div>
+        {%else%}
+          <div class="text-center">
+            <p>No user Bio yet</p>
+          </div>
+        {%endif%}
+
+        <h2 class="text-center mt-3" style="color: brown; text-decoration:underline;">My Projects</h2>
+      <div class="row">
+        {% for project in projects %}
+          <div class="col-xs-6 col-md-3 my-3">
+            <a href="{% url 'project_details' project_id=project.id%}" class="thumbnail">
+              <p><em>{{project.project_title}}</em></p>
+              <img src="{{project.screenshot.url}}" class="img-fluid" style="max-height: 200px" alt="Project Display Screenshot">
+            </a>
+          </div>
+        {%endfor%}
+      </div>
     {%endfor%}
   </div>
 

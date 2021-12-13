@@ -30,7 +30,8 @@ def project_details(request, project_id):
 def profile(request):
   current_user=request.user.id
   profile = Profile.objects.filter(user__id = current_user)
-  return render(request, 'profile.html', {"profile":profile})
+  projects = Project.objects.filter(user__id = current_user)
+  return render(request, 'profile.html', {"profile":profile, "projects":projects})
 
 def create_profile(request):
   # if request.method=="POST":
