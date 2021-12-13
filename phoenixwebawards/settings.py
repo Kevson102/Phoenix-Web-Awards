@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'rest_framework',
+    'mathfilters'
 ]
 
 MIDDLEWARE = [

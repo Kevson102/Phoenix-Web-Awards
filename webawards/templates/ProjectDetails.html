@@ -1,5 +1,6 @@
 {% extends 'common/base.html' %}
 {% load bootstrap4%}
+{% load mathfilters %}
 
 {% block content %}
 
@@ -56,7 +57,7 @@
           <td>{{vote.design_score}}</td>
           <td>{{vote.usability_score}}</td>
           <td>{{vote.content_score}}</td>
-          <td><small>calculating ...</small></td>
+          <td><small>{{ vote.design_score|add:vote.usability_score|add:vote.content_score|div:3|floatformat:2 }}</small></td>
         </tr>
       </tbody>
       {%endfor%}
