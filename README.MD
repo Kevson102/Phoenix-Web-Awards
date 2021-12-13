@@ -66,4 +66,4 @@ Support and contact details
 Incase of any issues at hand, please email me at kevson3941@gmail.com
 
 # License
-MIT License.
+<a href="Licence" target="_blank">MIT License.</a>
