@@ -34,16 +34,6 @@ def profile(request):
   return render(request, 'profile.html', {"profile":profile, "projects":projects})
 
 def create_profile(request):
-  # if request.method=="POST":
-  #   try:
-  #     profile = Profile.objects.get(profile_id=request.profile.id)
-  #     form = ProfileForm(request.POST, request.FILES, instance=profile)
-  #     form.save()
-      
-  #     messages.success(request, 'Your profile has been updated successfully')
-  #     return redirect('profile')
-    
-  #   except Profile.DoesNotExist:
     form = ProfileForm(request.POST, request.FILES)
     if form.is_valid():
       profile_photo = form.save(commit=False)
